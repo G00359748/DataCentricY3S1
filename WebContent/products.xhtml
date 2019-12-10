@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+<title>Products</title>
+<f:metadata>
+  		<f:event type="preRenderView" 
+      	listener="#{productController.loadProducts()}"/>
+	</f:metadata>
+</h:head>
+ <h:outputStylesheet library="css" name="tables.css"/>
+  <h:outputStylesheet library="css" name="styles.css"/>
+<body>
+
+<h:form>
+		<h3>Products</h3>
+  	<h:dataTable value="#{productController.products}" var="p"
+		headerClass="table-header"
+		rowClasses="table-odd-row,table-even-row">
+  	
+		<h:column>
+	 	  <f:facet name="header">pid</f:facet>
+	 	  	#{p.pid}
+		</h:column>
+		<h:column>
+	 	  <f:facet name="header">sid</f:facet>
+	 	  	#{p.sid}
+		</h:column>
+		<h:column>
+	 	  <f:facet name="header">prodName</f:facet>
+	 	  	#{p.prodName}
+		</h:column> 
+		 <h:column>
+	 	  <f:facet name="header">price</f:facet>
+	 	  	#{p.price}
+		</h:column> 
+		<h:column>
+	 	  <f:facet name="header">Action</f:facet>
+	 	  	<h:commandLink value="Delete" action="#{ProductController.delete(p.storeId)}"/>
+		</h:column>
+
+		
+  	</h:dataTable>
+  	</h:form>
+</body>
+</html>
